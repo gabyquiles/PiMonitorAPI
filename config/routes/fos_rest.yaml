@@ -1,0 +1,5 @@
+bandwidth:
+    type:     rest
+#    host:     m.example.com
+    resource: App\Controller\ApiController
+    prefix:   /api/v1/

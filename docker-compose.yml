@@ -1,0 +1,38 @@
+# docker-compose.yml
+version: '3.3'
+services:
+    mysql:
+      image: mysql
+      volumes:
+        - ${DB_DATA}:/var/lib/mysql
+      environment:
+        MYSQL_DATABASE: "${SERVER_NAME}_devdb"
+        MYSQL_USER: devdb
+        MYSQL_PASSWORD: devdb
+        MYSQL_ROOT_PASSWORD: t3st1ng
+      ports:
+        - "3306:3306"
+    php:
+        image: gabyquiles/php-7:dev
+        build:
+          context: .
+          dockerfile: docker/php-fpm/Dockerfile
+        volumes:
+          - .:/var/www/app
+        environment:
+          XDEBUG_CONFIG: "remote_host=${REMOTE_HOST}"
+          PHP_IDE_CONFIG: "serverName=${SERVER_NAME}"
+    nginx:
+        image: gabyquiles/nginx:dev
+        build:
+          context: .
+          dockerfile: docker/nginx/Dockerfile
+          args:
+            APP_SERVER_NAME: ${SERVER_NAME}
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/app
+        links:
+            - php
+            - mysql
