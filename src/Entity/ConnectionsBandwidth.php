@@ -17,7 +17,7 @@ class ConnectionsBandwidth
     private $id;
 
     /**
-     * @ORM\Column(type="timestamp")
+     * @ORM\Column(type="timestamp", options={"default": "CURRENT_TIMESTAMP"})
      */
     private $date;
 
