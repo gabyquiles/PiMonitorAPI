@@ -2,14 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\ConnectionsBandwidth;
+use App\Repository\ConnectionsBandwidthRepository;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 
 class ApiController extends FOSRestController
 {
-    public function getBandwidthAction()
+    /**
+     * @Rest\Route("/bandwidth")
+     */
+    public function getBandwidthAction(ConnectionsBandwidthRepository $repository)
     {
-        $repository = $this->getDoctrine()->getRepository(ConnectionsBandwidth::class);
         $bandwidths = $repository->findBy(array(), array('date' => 'DESC'), 48);
         $view = $this->view($bandwidths, 200);
         return $this->handleView($view);
