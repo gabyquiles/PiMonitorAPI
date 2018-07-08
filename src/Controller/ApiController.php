@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\ConnectionsBandwidth;
 use FOS\RestBundle\Controller\FOSRestController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends FOSRestController
@@ -19,10 +18,7 @@ class ApiController extends FOSRestController
         ]);
     }
 
-
-    /**
-     */
-    public function getBandwidthAction(Request $request)
+    public function getBandwidthAction()
     {
         $repository = $this->getDoctrine()->getRepository(ConnectionsBandwidth::class);
         $bandwidths = $repository->findBy(array(), array('date' => 'DESC'), 48);
