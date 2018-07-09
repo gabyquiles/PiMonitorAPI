@@ -18,10 +18,10 @@ Encore
     // .enableSassLoader()
 
     .enableReactPreset()
-// .configureBabel(function (babelConfig) {
-//     // add additional presets
-//     babelConfig.presets.push('stage-1');
-// })
+    .configureBabel(function (babelConfig) {
+        // add additional presets
+        babelConfig.presets.push('stage-1');
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
