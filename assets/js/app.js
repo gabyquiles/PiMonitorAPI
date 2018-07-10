@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import BandwidthTimeline from "./components/BandwidthTimeline";
 import {handleGetBandwidths} from "./actions/bandwidths";
 import {isEmpty} from "./utils/helpers"
+import LastBandwidth from "./components/LastBandwidth";
+import {getLastBandwidth} from "./selectors/bandwidths";
 
 class App extends Component {
     componentWillMount() {
@@ -10,22 +12,30 @@ class App extends Component {
     }
 
     render() {
-        const {loading} = this.props
+        const {loading, lastBandwidth} = this.props
+
         return (
             <div>
                 {loading
                     ? null
-                    : <BandwidthTimeline/>
+                    :
+                    (<div>
+                            <BandwidthTimeline/>
+                            <LastBandwidth direction="download" bandwidth={lastBandwidth.download}/>
+                            <LastBandwidth direction="upload" bandwidth={lastBandwidth.upload}/>
+                        </div>
+                    )
+
                 }
             </div>
         )
     }
 }
 
-function mapStateToFunction({bandwidths}) {
-    console.log("QAAA")
+function mapStateToFunction(state) {
     return {
-        loading: isEmpty(bandwidths)
+        loading: isEmpty(state.bandwidths),
+        lastBandwidth: getLastBandwidth(state)
     }
 }
 

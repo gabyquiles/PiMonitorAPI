@@ -9,7 +9,7 @@ class BandwidthTimeline extends Component {
             <div>
                 <ul>
                     {bandwidths.map((bandwidth) =>
-                        <li key={bandwidth.id}>{bandwidth.date}: {bandwidth.download}</li>
+                        <li key={bandwidth.id}>{bandwidth.date}: {bandwidth.download} - {bandwidth.upload}</li>
                     )}
                 </ul>
             </div>

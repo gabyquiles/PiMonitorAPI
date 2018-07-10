@@ -14,7 +14,16 @@ export const getSimplifiedBandwidths = createSelector(
                         upload
                     })
                 }
-            )
+            ).sort((a, b) => {
+                return b.date - a.date
+            })
         )
+    }
+)
+
+export const getLastBandwidth = createSelector(
+    [getSimplifiedBandwidths],
+    (bandwidths) => {
+        return bandwidths[0]
     }
 )
