@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import BandwidthTimeline from "./components/BandwidthTimeline";
-import {handleGetBandwidths} from "./actions/bandwidths";
 import {isEmpty} from "./utils/helpers"
 import LastBandwidth from "./components/LastBandwidth";
 import {getLastBandwidth} from "./selectors/bandwidths";
+import {handleInitialData} from "./actions/shared";
+import PictureFrame from "./components/PictureFrame";
 
 class App extends Component {
     componentWillMount() {
-        this.props.dispatch(handleGetBandwidths())
+        this.props.dispatch(handleInitialData())
     }
 
     render() {
@@ -23,6 +24,7 @@ class App extends Component {
                             <BandwidthTimeline/>
                             <LastBandwidth direction="download" bandwidth={lastBandwidth.download}/>
                             <LastBandwidth direction="upload" bandwidth={lastBandwidth.upload}/>
+                            <PictureFrame/>
                         </div>
                     )
 
@@ -34,7 +36,7 @@ class App extends Component {
 
 function mapStateToFunction(state) {
     return {
-        loading: isEmpty(state.bandwidths),
+        loading: isEmpty(state.bandwidths) || isEmpty(state.images),
         lastBandwidth: getLastBandwidth(state)
     }
 }
