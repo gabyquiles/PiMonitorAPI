@@ -2,6 +2,10 @@ import {createSelector} from 'reselect'
 
 const getBandwidths = (state) => state.bandwidths
 
+function scaleBandwidthToMbps(bandwidth) {
+    return Math.round(bandwidth / 10000) / 100
+}
+
 export const getSimplifiedBandwidths = createSelector(
     [getBandwidths],
     (bandwidths) => {
@@ -10,8 +14,8 @@ export const getSimplifiedBandwidths = createSelector(
                     return ({
                         id,
                         date,
-                        download,
-                        upload
+                        download: scaleBandwidthToMbps(download),
+                        upload: scaleBandwidthToMbps(upload)
                     })
                 }
             ).sort((a, b) => {

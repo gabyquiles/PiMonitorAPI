@@ -4,10 +4,9 @@ import PropTypes from 'prop-types'
 class LastBandwidth extends Component {
     render() {
         const {bandwidth, direction} = this.props
-        const calcBandwidth = Math.round(bandwidth / 10000) / 100
+        // const calcBandwidth = Math.round(bandwidth / 10000) / 100
         return (<div>
-            {calcBandwidth} Mbps <span
-            className={direction}>{direction === "download" ? "D" : "U"}</span>
+            {bandwidth} Mbps <span className={direction}>{direction === "download" ? "D" : "U"}</span>
         </div>)
     }
 }
