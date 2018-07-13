@@ -36,7 +36,7 @@ class App extends Component {
 
 function mapStateToFunction(state) {
     return {
-        loading: isEmpty(state.bandwidths) || isEmpty(state.images),
+        loading: isEmpty(state.bandwidths) && isEmpty(state.images),
         lastBandwidth: getLastBandwidth(state)
     }
 }
