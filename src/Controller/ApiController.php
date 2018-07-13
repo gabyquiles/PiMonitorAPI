@@ -31,7 +31,7 @@ class ApiController extends FOSRestController
         $imagesFolder = $projectDir . '/public' . $imagesPublicFolder;
 
         $finder = new Finder();
-        $finder->files()->name("*.jpg")->in($imagesFolder);
+        $finder->files()->name('*.jpg')->name('*.jpeg')->in($imagesFolder);
         $images = array();
         foreach ($finder as $file) {
             $images[] = $imagesPublicFolder . $file->getBasename();
