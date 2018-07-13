@@ -1,11 +1,13 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
+import {StyledApp, StyledDownload, StyledGraph, StyledPictureFrame, StyledUpload} from "./styles/styles";
 import BandwidthTimeline from "./components/BandwidthTimeline";
 import {isEmpty} from "./utils/helpers"
 import LastBandwidth from "./components/LastBandwidth";
 import {getLastBandwidth} from "./selectors/bandwidths";
 import {handleInitialData} from "./actions/shared";
 import PictureFrame from "./components/PictureFrame";
+
 
 class App extends Component {
     componentWillMount() {
@@ -16,20 +18,28 @@ class App extends Component {
         const {loading, lastBandwidth} = this.props
 
         return (
-            <div>
+            <StyledApp>
                 {loading
                     ? null
                     :
-                    (<div>
-                            <BandwidthTimeline/>
-                            <LastBandwidth direction="download" bandwidth={lastBandwidth.download}/>
-                            <LastBandwidth direction="upload" bandwidth={lastBandwidth.upload}/>
-                            <PictureFrame/>
-                        </div>
+                    (<Fragment>
+                            <StyledGraph>
+                                <BandwidthTimeline/>
+                            </StyledGraph>
+                            <StyledDownload>
+                                <LastBandwidth direction="download" bandwidth={lastBandwidth.download}/>
+                            </StyledDownload>
+                            <StyledUpload>
+                                <LastBandwidth direction="upload" bandwidth={lastBandwidth.upload}/>
+                            </StyledUpload>
+                            <StyledPictureFrame>
+                                <PictureFrame/>
+                            </StyledPictureFrame>
+                        </Fragment>
                     )
 
                 }
-            </div>
+            </StyledApp>
         )
     }
 }

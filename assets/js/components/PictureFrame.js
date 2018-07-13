@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
+import {StyledImage} from "../styles/styles"
 import {connect} from 'react-redux'
+
 
 class PictureFrame extends Component {
     render() {
@@ -7,13 +9,9 @@ class PictureFrame extends Component {
         console.log(images)
         return (
             <div>
-                <ul>
-                    {images.map((image) => (
-                        <li key={image}>
-                            <img src={image}/>
-                        </li>
-                    ))}
-                </ul>
+                {images.map((image) => (
+                    <StyledImage key={image} image={image}/>
+                ))}
             </div>
         )
     }

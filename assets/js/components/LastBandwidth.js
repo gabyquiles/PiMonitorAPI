@@ -1,13 +1,17 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {DownloadIcon, StyledBandwidth, UploadIcon} from "../styles/styles"
+
 
 class LastBandwidth extends Component {
     render() {
         const {bandwidth, direction} = this.props
         // const calcBandwidth = Math.round(bandwidth / 10000) / 100
-        return (<div>
-            {bandwidth} Mbps <span className={direction}>{direction === "download" ? "D" : "U"}</span>
-        </div>)
+        return (<StyledBandwidth>
+            {bandwidth} Mbps {direction === "download"
+            ? (<DownloadIcon/>)
+            : (<UploadIcon/>)}
+        </StyledBandwidth>)
     }
 }
 
