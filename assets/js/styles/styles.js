@@ -5,6 +5,8 @@ export const StyledApp = styled.div`
     grid-gap: 10px;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
     align-content: center;
+    grid-template-rows: 1fr 4fr;
+    height: 100vh;
 `;
 
 export const StyledGraph = styled.div`
@@ -63,4 +65,5 @@ export const StyledImage = styled.div`
     -o-background-size: cover;
     background-size: cover;
     min-height: 400px;
+    height: 100%;
 `
