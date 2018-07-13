@@ -57,7 +57,7 @@ export const DownloadIcon = styled.i`
 `
 
 export const StyledImage = styled.div`
-    background: url(${props => props.image}) no-repeat center center fixed;
+    background: url(${props => props.image}) no-repeat 50%/cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
